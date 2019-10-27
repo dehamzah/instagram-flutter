@@ -3,6 +3,7 @@ import 'package:instagram_flutter/features/account/widgets/account_screen.dart';
 import 'package:instagram_flutter/features/activity/widgets/activity_screen.dart';
 import 'package:instagram_flutter/features/explore/widgets/explore_screen.dart';
 import 'package:instagram_flutter/features/home/widgets/home_screen.dart';
+import 'package:instagram_flutter/features/not_found/widgets/not_found_screen.dart';
 import 'package:instagram_flutter/features/post/widgets/new_post_screen.dart';
 
 class Navigation extends StatelessWidget {
@@ -63,6 +64,12 @@ class Navigation extends StatelessWidget {
             return CupertinoTabView(
               builder: (context) {
                 return AccountScreen();
+              },
+            );
+          default:
+            return CupertinoTabView(
+              builder: (context) {
+                return NotFoundScreen();
               },
             );
         }
