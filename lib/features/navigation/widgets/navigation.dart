@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:instagram_flutter/core/icons/instagram_icons.dart';
 import 'package:instagram_flutter/features/account/widgets/account_screen.dart';
 import 'package:instagram_flutter/features/activity/widgets/activity_screen.dart';
 import 'package:instagram_flutter/features/explore/widgets/explore_screen.dart';
@@ -13,24 +14,19 @@ class Navigation extends StatelessWidget {
       tabBar: CupertinoTabBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.home),
-            title: Text('Home'),
+            icon: Icon(InstagramIcons.home_outlined),
           ),
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.search),
-            title: Text('Explore'),
+            icon: Icon(InstagramIcons.search_outlined),
           ),
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.add_circled),
-            title: Text('New'),
+            icon: Icon(InstagramIcons.new_outlined),
           ),
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.folder),
-            title: Text('Activity'),
+            icon: Icon(InstagramIcons.heart_outlined),
           ),
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.person),
-            title: Text('Account'),
+            icon: Icon(InstagramIcons.user_outlined),
           ),
         ],
       ),

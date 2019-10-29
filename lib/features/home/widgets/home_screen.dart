@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:instagram_flutter/core/icons/instagram_icons.dart';
 import 'package:instagram_flutter/core/theme/dimens.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -18,8 +19,8 @@ class HomeScreen extends StatelessWidget {
             'assets/images/instagram.png',
           ),
         ),
-        trailing: Icon(CupertinoIcons.share),
-        leading: Icon(CupertinoIcons.photo_camera),
+        leading: Icon(InstagramIcons.photo_outline),
+        trailing: Icon(InstagramIcons.inbox_outlined),
       ),
       child: Container(
         child: Text('Home Screen'),
