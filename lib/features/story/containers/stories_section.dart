@@ -12,22 +12,20 @@ class StoriesSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 120,
+      height: 105,
       width: double.infinity,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListView.separated(
-          itemCount: stories.length,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (BuildContext context, int index) {
-            return StoryItem(story: stories[index]);
-          },
-          separatorBuilder: (BuildContext context, int index) {
-            return SizedBox(
-              width: Dimens.space16,
-            );
-          },
-        ),
+      child: ListView.separated(
+        padding: EdgeInsets.all(8),
+        itemCount: stories.length,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (BuildContext context, int index) {
+          return StoryItem(story: stories[index]);
+        },
+        separatorBuilder: (BuildContext context, int index) {
+          return SizedBox(
+            width: Dimens.space16,
+          );
+        },
       ),
     );
   }
