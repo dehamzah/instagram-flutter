@@ -127,20 +127,20 @@ class HomeScreen extends StatelessWidget {
         leading: Icon(InstagramIcons.photo_outline),
         trailing: Icon(InstagramIcons.inbox_outlined),
       ),
-      child: Column(
-        children: <Widget>[
-          SizedBox(
-            height: 70,
-          ),
-          StoriesSection(
-            stories: stories,
-          ),
-          Expanded(
-            child: PostFeed(
-              posts: posts,
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            SizedBox(
+              height: 70,
             ),
-          )
-        ],
+            StoriesSection(
+              stories: stories,
+            ),
+            PostFeed(
+              posts: posts,
+            )
+          ],
+        ),
       ),
     );
   }

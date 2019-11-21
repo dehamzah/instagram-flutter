@@ -10,6 +10,8 @@ class PostFeed extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      shrinkWrap: true,
+      primary: false,
       padding: EdgeInsets.all(0),
       itemCount: posts.length,
       itemBuilder: (BuildContext context, int index) {
