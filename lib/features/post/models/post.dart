@@ -1,9 +1,13 @@
 import 'package:instagram_flutter/features/account/models/user.dart';
+import 'package:instagram_flutter/features/post/models/media.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'post.g.dart';
+
+@JsonSerializable(explicitToJson: true)
 class Post {
   final User user;
-  final List<String> mediaUrls;
-  final String mediaType;
+  final List<Media> medias;
   final String location;
   final String description;
   final bool isLoved;
@@ -13,8 +17,7 @@ class Post {
 
   Post({
     this.user,
-    this.mediaUrls,
-    this.mediaType,
+    this.medias,
     this.location,
     this.description,
     this.isLoved,
@@ -22,4 +25,8 @@ class Post {
     this.createdAt,
     this.updatedAt,
   });
+
+  factory Post.fromJson(Map<String, dynamic> json) => _$PostFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PostToJson(this);
 }
