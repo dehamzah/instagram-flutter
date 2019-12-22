@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:instagram_flutter/core/icons/instagram_icons.dart';
 import 'package:instagram_flutter/core/theme/colors.dart';
 import 'package:instagram_flutter/core/theme/dimens.dart';
+import 'package:instagram_flutter/features/post/models/media.dart';
 import 'package:instagram_flutter/features/post/models/post.dart';
 
 class PostCard extends StatelessWidget {
@@ -17,13 +18,12 @@ class PostCard extends StatelessWidget {
       child: Column(
         children: <Widget>[
           PostCardHeader(
-            avatarUrl: post.user.avatarUrl,
-            title: post.user.username,
-            subtitle: post.location,
+            avatarUrl: post?.user?.avatarUrl,
+            title: post?.user?.username,
+            subtitle: post?.location,
           ),
           PostCardBody(
-            mediaType: post.mediaType,
-            mediaUrls: post.mediaUrls,
+            medias: post?.medias,
           ),
           PostCardActions()
         ],
@@ -42,6 +42,8 @@ class PostCardHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+
     return Container(
       padding: EdgeInsets.all(Dimens.space8),
       child: Row(
@@ -63,6 +65,7 @@ class PostCardHeader extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w700,
+                    color: isDark ? Colors.white : ThemeColors.black1,
                   ),
                 ),
                 subtitle != null
@@ -71,6 +74,7 @@ class PostCardHeader extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w300,
+                          color: isDark ? Colors.white : ThemeColors.black1,
                         ),
                       )
                     : Container()
@@ -79,7 +83,7 @@ class PostCardHeader extends StatelessWidget {
           ),
           Icon(
             Icons.more_vert,
-            color: ThemeColors.black2,
+            color: isDark ? Colors.white : ThemeColors.black2,
           )
         ],
       ),
@@ -88,24 +92,31 @@ class PostCardHeader extends StatelessWidget {
 }
 
 class PostCardBody extends StatelessWidget {
-  final List<String> mediaUrls;
-  final String mediaType;
+  final List<Media> medias;
 
-  const PostCardBody({Key key, this.mediaUrls, this.mediaType})
-      : super(key: key);
+  const PostCardBody({
+    Key key,
+    this.medias,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 300,
       child: PageView.builder(
+        itemCount: medias.length,
         itemBuilder: (BuildContext context, int index) {
-          return Image(
-            width: double.infinity,
-            height: 300,
-            image: NetworkImage(mediaUrls[index]),
-            fit: BoxFit.cover,
-          );
+          if (medias[index].mediaType == MediaType.image) {
+            return Image(
+              width: double.infinity,
+              height: 300,
+              image: NetworkImage(medias[index].mediaUrl),
+              fit: BoxFit.cover,
+            );
+          } else {
+            // TODO: create video component
+            return Container();
+          }
         },
       ),
     );
@@ -115,6 +126,8 @@ class PostCardBody extends StatelessWidget {
 class PostCardActions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    bool isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+
     return Container(
       padding: EdgeInsets.symmetric(
           horizontal: Dimens.space4, vertical: Dimens.space4),
@@ -124,7 +137,7 @@ class PostCardActions extends StatelessWidget {
             child: Icon(
               InstagramIcons.heart_outlined,
               size: 30,
-              color: ThemeColors.black2,
+              color: isDark ? Colors.white : ThemeColors.black2,
             ),
             padding: EdgeInsets.all(Dimens.space4),
           ),
@@ -132,7 +145,7 @@ class PostCardActions extends StatelessWidget {
             child: Icon(
               InstagramIcons.comment_outlined,
               size: 30,
-              color: ThemeColors.black2,
+              color: isDark ? Colors.white : ThemeColors.black2,
             ),
             padding: EdgeInsets.all(Dimens.space4),
           ),
@@ -140,7 +153,7 @@ class PostCardActions extends StatelessWidget {
             child: Icon(
               InstagramIcons.send_outlined,
               size: 30,
-              color: ThemeColors.black2,
+              color: isDark ? Colors.white : ThemeColors.black2,
             ),
             padding: EdgeInsets.all(Dimens.space4),
           ),
@@ -150,7 +163,7 @@ class PostCardActions extends StatelessWidget {
               child: Icon(
                 Icons.bookmark,
                 size: 30,
-                color: ThemeColors.black2,
+                color: isDark ? Colors.white : ThemeColors.black2,
               ),
               padding: EdgeInsets.all(Dimens.space4),
             ),

@@ -1,14 +1,38 @@
 import 'package:flutter/cupertino.dart';
 import 'package:instagram_flutter/features/post/models/post.dart';
+import 'package:instagram_flutter/features/post/services/post_service.dart';
 import 'package:instagram_flutter/features/post/widgets/post_card.dart';
 
-class PostFeed extends StatelessWidget {
-  final List<Post> posts;
+class PostFeed extends StatefulWidget {
+  @override
+  _PostFeedState createState() => _PostFeedState();
+}
 
-  const PostFeed({Key key, this.posts}) : super(key: key);
+class _PostFeedState extends State<PostFeed> {
+  bool isLoading = false;
+  List<Post> posts;
+
+  @override
+  void initState() {
+    super.initState();
+    this.getPosts();
+  }
+
+  void getPosts() async {
+    setState(() {
+      isLoading = true;
+    });
+    List<Post> _posts = await PostService.getLatestPosts();
+    setState(() {
+      posts = _posts;
+      isLoading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (isLoading) return CupertinoActivityIndicator();
+
     return ListView.builder(
       shrinkWrap: true,
       primary: false,

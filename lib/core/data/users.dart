@@ -1,7 +1,7 @@
 import 'package:instagram_flutter/features/account/models/user.dart';
 
 User tanjiro = User(
-  id: '1',
+  id: 1,
   avatarUrl:
       'https://vignette.wikia.nocookie.net/kimetsu-no-yaiba/images/c/c7/Tanjiro_anime_design.png/revision/latest?cb=20181128204204',
   fullName: 'Tanjiro Kamado',
@@ -9,7 +9,7 @@ User tanjiro = User(
 );
 
 User tomioka = User(
-  id: '2',
+  id: 2,
   avatarUrl:
       'https://vignette.wikia.nocookie.net/kimetsu-no-yaiba/images/4/43/Giyu_anime_design.png/revision/latest/scale-to-width-down/350?cb=20190831073602',
   fullName: 'Giyu Tomioka',
@@ -17,7 +17,7 @@ User tomioka = User(
 );
 
 User nezuko = User(
-  id: '3',
+  id: 3,
   avatarUrl:
       'https://vignette.wikia.nocookie.net/kimetsu-no-yaiba/images/2/2f/Nezuko_anime_design.png/revision/latest?cb=20181128204224',
   fullName: 'Nezuko Kamado',
@@ -25,7 +25,7 @@ User nezuko = User(
 );
 
 User zenitsu = User(
-  id: '4',
+  id: 4,
   avatarUrl:
       'https://static.tvtropes.org/pmwiki/pub/images/zenitsu_agatsuma_anime.png',
   fullName: 'Zenitsu Agatsuma',

@@ -9,7 +9,7 @@ part 'user.g.dart';
 /// JSON serialization logic to be generated.
 @JsonSerializable()
 class User {
-  final String id;
+  final int id;
   final String username;
   final String fullName;
   final String avatarUrl;

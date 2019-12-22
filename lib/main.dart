@@ -1,4 +1,10 @@
-import 'package:flutter/cupertino.dart';
-import 'package:instagram_flutter/core/app.dart';
+import 'package:instagram_flutter/core/config.dart';
 
-void main() => runApp(App());
+class Main extends Config {
+  final Env env = Env.dev;
+  final String apiBaseUrl = 'http://192.168.43.98:3000';
+}
+
+void main() {
+  Main();
+}

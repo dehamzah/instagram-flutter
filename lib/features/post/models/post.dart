@@ -6,6 +6,7 @@ part 'post.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class Post {
+  final int id;
   final User user;
   final List<Media> medias;
   final String location;
@@ -16,6 +17,7 @@ class Post {
   final String updatedAt;
 
   Post({
+    this.id,
     this.user,
     this.medias,
     this.location,
