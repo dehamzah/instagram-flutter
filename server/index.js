@@ -6,8 +6,8 @@ function randomIntFromInterval(min, max) {
 }
 
 module.exports = () => {
-  const TOTAL_USERS = 40;
-  const TOTAL_POSTS = 40;
+  const TOTAL_USERS = 20;
+  const TOTAL_POSTS = 20;
   const TOTAL_STORIES = 20;
 
   const data = {

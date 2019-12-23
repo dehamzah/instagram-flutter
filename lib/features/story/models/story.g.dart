@@ -8,7 +8,7 @@ part of 'story.dart';
 
 Story _$StoryFromJson(Map<String, dynamic> json) {
   return Story(
-    id: json['id'] as String,
+    id: json['id'] as int,
     isRead: json['isRead'] as bool,
     user: json['user'] == null
         ? null

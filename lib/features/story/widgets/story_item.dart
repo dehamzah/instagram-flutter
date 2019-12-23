@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:instagram_flutter/core/config.dart';
+import 'package:instagram_flutter/core/theme/colors.dart';
 import 'package:instagram_flutter/core/theme/dimens.dart';
 import 'package:instagram_flutter/features/story/models/story.dart';
 
@@ -10,6 +12,8 @@ class StoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+
     return Column(
       children: <Widget>[
         Container(
@@ -35,8 +39,11 @@ class StoryItem extends StatelessWidget {
           height: Dimens.space6,
         ),
         Text(
-          story.user.username,
-          style: TextStyle(fontSize: 12),
+          story?.user?.username ?? '',
+          style: TextStyle(
+            fontSize: 12,
+            color: isDark ? Colors.white : ThemeColors.black1,
+          ),
         )
       ],
     );

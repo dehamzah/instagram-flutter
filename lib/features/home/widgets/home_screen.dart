@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:instagram_flutter/core/icons/instagram_icons.dart';
 import 'package:instagram_flutter/core/theme/dimens.dart';
 import 'package:instagram_flutter/features/post/containers/post_feed.dart';
+import 'package:instagram_flutter/features/story/containers/stories_section.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -25,8 +26,8 @@ class HomeScreen extends StatelessWidget {
       ),
       child: ListView(
         children: <Widget>[
-          // StoriesSection(),
-          PostFeed()
+          StoriesSection(),
+          PostFeed(),
         ],
       ),
     );

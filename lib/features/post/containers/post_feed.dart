@@ -33,6 +33,8 @@ class _PostFeedState extends State<PostFeed> {
   Widget build(BuildContext context) {
     if (isLoading) return CupertinoActivityIndicator();
 
+    if (posts == null || posts.length == 0) return Container();
+
     return ListView.builder(
       shrinkWrap: true,
       primary: false,

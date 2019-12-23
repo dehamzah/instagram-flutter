@@ -1,0 +1,396 @@
+[
+  {
+    "id": 1,
+    "isRead": false,
+    "user": {
+      "id": 9,
+      "username": "lorenza",
+      "fullName": "Roger VonRueden",
+      "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/borantula/128.jpg"
+    },
+    "medias": [
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?93453",
+        "mediaType": "image"
+      },
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?42586",
+        "mediaType": "image"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "isRead": false,
+    "user": {
+      "id": 12,
+      "username": "maya",
+      "fullName": "Jaylon Weimann",
+      "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/chrisslowik/128.jpg"
+    },
+    "medias": [
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?5378",
+        "mediaType": "image"
+      },
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?25341",
+        "mediaType": "image"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "isRead": false,
+    "user": {
+      "id": 9,
+      "username": "lorenza",
+      "fullName": "Roger VonRueden",
+      "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/borantula/128.jpg"
+    },
+    "medias": [
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?41153",
+        "mediaType": "image"
+      },
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?88590",
+        "mediaType": "image"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "isRead": false,
+    "user": {
+      "id": 18,
+      "username": "zakary",
+      "fullName": "Lexus Jenkins",
+      "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/chaabane_wail/128.jpg"
+    },
+    "medias": [
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?31103",
+        "mediaType": "image"
+      },
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?89876",
+        "mediaType": "image"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "isRead": false,
+    "user": {
+      "id": 16,
+      "username": "aliza",
+      "fullName": "Liam O'Hara",
+      "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/vladyn/128.jpg"
+    },
+    "medias": [
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?80716",
+        "mediaType": "image"
+      },
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?4477",
+        "mediaType": "image"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "isRead": false,
+    "medias": [
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?99326",
+        "mediaType": "image"
+      },
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?4168",
+        "mediaType": "image"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "isRead": false,
+    "user": {
+      "id": 7,
+      "username": "garland",
+      "fullName": "Keaton Heller",
+      "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/_ragzor/128.jpg"
+    },
+    "medias": [
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?64405",
+        "mediaType": "image"
+      },
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?39282",
+        "mediaType": "image"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "isRead": false,
+    "user": {
+      "id": 6,
+      "username": "megane",
+      "fullName": "Emilio Wiza",
+      "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/themikenagle/128.jpg"
+    },
+    "medias": [
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?2502",
+        "mediaType": "image"
+      },
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?89545",
+        "mediaType": "image"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "isRead": false,
+    "user": {
+      "id": 16,
+      "username": "aliza",
+      "fullName": "Liam O'Hara",
+      "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/vladyn/128.jpg"
+    },
+    "medias": [
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?87498",
+        "mediaType": "image"
+      },
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?23054",
+        "mediaType": "image"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "isRead": false,
+    "user": {
+      "id": 6,
+      "username": "megane",
+      "fullName": "Emilio Wiza",
+      "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/themikenagle/128.jpg"
+    },
+    "medias": [
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?60659",
+        "mediaType": "image"
+      },
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?90717",
+        "mediaType": "image"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "isRead": false,
+    "user": {
+      "id": 4,
+      "username": "columbus",
+      "fullName": "Dora Lehner",
+      "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/nelsonjoyce/128.jpg"
+    },
+    "medias": [
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?8033",
+        "mediaType": "image"
+      },
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?65480",
+        "mediaType": "image"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "isRead": false,
+    "user": {
+      "id": 8,
+      "username": "larissa",
+      "fullName": "Retha Gerlach",
+      "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/markwienands/128.jpg"
+    },
+    "medias": [
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?85004",
+        "mediaType": "image"
+      },
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?76079",
+        "mediaType": "image"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "isRead": false,
+    "user": {
+      "id": 3,
+      "username": "adrien",
+      "fullName": "Russ Brekke",
+      "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/christianoliff/128.jpg"
+    },
+    "medias": [
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?31178",
+        "mediaType": "image"
+      },
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?56507",
+        "mediaType": "image"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "isRead": false,
+    "user": {
+      "id": 17,
+      "username": "zoe",
+      "fullName": "Dean Kilback",
+      "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/mugukamil/128.jpg"
+    },
+    "medias": [
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?3710",
+        "mediaType": "image"
+      },
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?17739",
+        "mediaType": "image"
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "isRead": false,
+    "user": {
+      "id": 8,
+      "username": "larissa",
+      "fullName": "Retha Gerlach",
+      "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/markwienands/128.jpg"
+    },
+    "medias": [
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?41215",
+        "mediaType": "image"
+      },
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?74393",
+        "mediaType": "image"
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "isRead": false,
+    "user": {
+      "id": 15,
+      "username": "violet",
+      "fullName": "Junius Schumm",
+      "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/rmlewisuk/128.jpg"
+    },
+    "medias": [
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?82584",
+        "mediaType": "image"
+      },
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?71203",
+        "mediaType": "image"
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "isRead": false,
+    "user": {
+      "id": 7,
+      "username": "garland",
+      "fullName": "Keaton Heller",
+      "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/_ragzor/128.jpg"
+    },
+    "medias": [
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?83349",
+        "mediaType": "image"
+      },
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?20154",
+        "mediaType": "image"
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "isRead": false,
+    "user": {
+      "id": 15,
+      "username": "violet",
+      "fullName": "Junius Schumm",
+      "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/rmlewisuk/128.jpg"
+    },
+    "medias": [
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?17537",
+        "mediaType": "image"
+      },
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?94874",
+        "mediaType": "image"
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "isRead": false,
+    "user": {
+      "id": 11,
+      "username": "raquel",
+      "fullName": "Richard Considine",
+      "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/davidhemphill/128.jpg"
+    },
+    "medias": [
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?66322",
+        "mediaType": "image"
+      },
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?69745",
+        "mediaType": "image"
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "isRead": false,
+    "user": {
+      "id": 5,
+      "username": "kristopher",
+      "fullName": "Randall Donnelly",
+      "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/iamsteffen/128.jpg"
+    },
+    "medias": [
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?88749",
+        "mediaType": "image"
+      },
+      {
+        "mediaUrl": "https://lorempixel.com/800/600/people?51471",
+        "mediaType": "image"
+      }
+    ]
+  }
+]

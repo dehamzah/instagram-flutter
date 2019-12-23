@@ -6,7 +6,7 @@ part 'story.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class Story {
-  final String id;
+  final int id;
   final bool isRead;
   final User user;
   final List<Media> medias;

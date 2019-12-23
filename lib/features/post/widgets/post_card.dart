@@ -1,5 +1,9 @@
+import 'dart:convert';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:instagram_flutter/core/config.dart';
 import 'package:instagram_flutter/core/icons/instagram_icons.dart';
 import 'package:instagram_flutter/core/theme/colors.dart';
 import 'package:instagram_flutter/core/theme/dimens.dart';
@@ -18,12 +22,12 @@ class PostCard extends StatelessWidget {
       child: Column(
         children: <Widget>[
           PostCardHeader(
-            avatarUrl: post?.user?.avatarUrl,
-            title: post?.user?.username,
-            subtitle: post?.location,
+            avatarUrl: post.user.avatarUrl,
+            title: post.user.username,
+            subtitle: post.location,
           ),
           PostCardBody(
-            medias: post?.medias,
+            medias: post.medias,
           ),
           PostCardActions()
         ],
