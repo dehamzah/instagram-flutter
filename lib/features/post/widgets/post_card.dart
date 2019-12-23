@@ -9,6 +9,7 @@ import 'package:instagram_flutter/core/theme/colors.dart';
 import 'package:instagram_flutter/core/theme/dimens.dart';
 import 'package:instagram_flutter/features/post/models/media.dart';
 import 'package:instagram_flutter/features/post/models/post.dart';
+import 'package:instagram_flutter/core/utils/dark_mode.dart' as darkMode;
 
 class PostCard extends StatelessWidget {
   final Post post;
@@ -46,7 +47,7 @@ class PostCardHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+    bool isDark = darkMode.isDark(context);
 
     return Container(
       padding: EdgeInsets.all(Dimens.space8),

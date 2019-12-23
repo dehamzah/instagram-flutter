@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:instagram_flutter/features/post/models/post.dart';
-import 'package:instagram_flutter/features/post/services/post_service.dart';
+import 'package:instagram_flutter/features/post/stores/post_store.dart';
 import 'package:instagram_flutter/features/post/widgets/post_card.dart';
+import 'package:provider/provider.dart';
 
 class PostFeed extends StatefulWidget {
   @override
@@ -9,40 +9,29 @@ class PostFeed extends StatefulWidget {
 }
 
 class _PostFeedState extends State<PostFeed> {
-  bool isLoading = false;
-  List<Post> posts;
-
   @override
   void initState() {
     super.initState();
-    this.getPosts();
-  }
-
-  void getPosts() async {
-    setState(() {
-      isLoading = true;
-    });
-    List<Post> _posts = await PostService.getLatestPosts();
-    setState(() {
-      posts = _posts;
-      isLoading = false;
-    });
+    Provider.of<PostStore>(context, listen: false).getLatestPosts();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (isLoading) return CupertinoActivityIndicator();
+    PostStore _postStore = Provider.of<PostStore>(context);
+    if (_postStore.isLoading) return CupertinoActivityIndicator();
 
-    if (posts == null || posts.length == 0) return Container();
+    if (_postStore.posts == null || _postStore.posts.length == 0) {
+      return Container();
+    }
 
     return ListView.builder(
       shrinkWrap: true,
       primary: false,
       padding: EdgeInsets.all(0),
-      itemCount: posts.length,
+      itemCount: _postStore.posts.length,
       itemBuilder: (BuildContext context, int index) {
         return PostCard(
-          post: posts[index],
+          post: _postStore.posts[index],
         );
       },
     );

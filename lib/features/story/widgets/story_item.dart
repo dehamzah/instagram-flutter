@@ -1,18 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:instagram_flutter/core/config.dart';
 import 'package:instagram_flutter/core/theme/colors.dart';
 import 'package:instagram_flutter/core/theme/dimens.dart';
 import 'package:instagram_flutter/features/story/models/story.dart';
+import 'package:instagram_flutter/core/utils/dark_mode.dart' as darkMode;
 
 class StoryItem extends StatelessWidget {
   final Story story;
 
-  const StoryItem({Key key, this.story}) : super(key: key);
+  const StoryItem({Key key, @required this.story}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    bool isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+    bool isDark = darkMode.isDark(context);
 
     return Column(
       children: <Widget>[
