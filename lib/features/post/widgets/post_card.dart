@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:instagram_flutter/core/config.dart';
 import 'package:instagram_flutter/core/icons/instagram_icons.dart';
 import 'package:instagram_flutter/core/theme/colors.dart';
@@ -132,6 +133,7 @@ class PostCardActions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+    double iconSize = 30;
 
     return Container(
       padding: EdgeInsets.symmetric(
@@ -139,36 +141,45 @@ class PostCardActions extends StatelessWidget {
       child: Row(
         children: <Widget>[
           Padding(
-            child: Icon(
-              InstagramIcons.heart_outlined,
-              size: 30,
+            child: SvgPicture.asset(
+              "assets/icons/heart_outlined.svg",
               color: isDark ? Colors.white : ThemeColors.black2,
+              semanticsLabel: "Love",
+              width:
+                  iconSize + 3, // source file heart icon is smaller than other
+              height: iconSize + 3,
             ),
             padding: EdgeInsets.all(Dimens.space4),
           ),
           Padding(
-            child: Icon(
-              InstagramIcons.comment_outlined,
-              size: 30,
+            child: SvgPicture.asset(
+              "assets/icons/comment_outlined.svg",
               color: isDark ? Colors.white : ThemeColors.black2,
+              semanticsLabel: "Comment",
+              width: iconSize,
+              height: iconSize,
             ),
             padding: EdgeInsets.all(Dimens.space4),
           ),
           Padding(
-            child: Icon(
-              InstagramIcons.send_outlined,
-              size: 30,
+            child: SvgPicture.asset(
+              "assets/icons/send_outlined.svg",
               color: isDark ? Colors.white : ThemeColors.black2,
+              semanticsLabel: "Send",
+              width: iconSize,
+              height: iconSize,
             ),
             padding: EdgeInsets.all(Dimens.space4),
           ),
           Expanded(
             child: Container(
               alignment: Alignment.centerRight,
-              child: Icon(
-                Icons.bookmark,
-                size: 30,
+              child: SvgPicture.asset(
+                "assets/icons/bookmark_outlined.svg",
                 color: isDark ? Colors.white : ThemeColors.black2,
+                semanticsLabel: "Bookmark",
+                width: 22, // source file bookmark icon is bigger than other
+                height: 22,
               ),
               padding: EdgeInsets.all(Dimens.space4),
             ),
