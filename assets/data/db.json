@@ -647,6 +647,12 @@
     {
       "id": 6,
       "isRead": false,
+      "user": {
+        "id": 9,
+        "username": "lorenza",
+        "fullName": "Roger VonRueden",
+        "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/borantula/128.jpg"
+      },
       "medias": [
         {
           "mediaUrl": "https://lorempixel.com/800/600/people?99326",
