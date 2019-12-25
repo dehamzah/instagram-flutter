@@ -6,7 +6,7 @@ class StoryStore with ChangeNotifier {
   bool isLoading = false;
   List<Story> stories;
 
-  void getLatestStories() async {
+  Future<void> getLatestStories() async {
     this.isLoading = true;
     this.stories = await StoryService.getLatestStories();
     this.isLoading = false;

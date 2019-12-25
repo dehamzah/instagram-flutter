@@ -6,7 +6,7 @@ class PostStore with ChangeNotifier {
   bool isLoading = false;
   List<Post> posts;
 
-  void getLatestPosts() async {
+  Future<void> getLatestPosts() async {
     this.isLoading = true;
     this.posts = await PostService.getLatestPosts();
     this.isLoading = false;
