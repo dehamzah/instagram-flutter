@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:instagram_flutter/core/icons/instagram_icons.dart';
 import 'package:instagram_flutter/core/theme/dimens.dart';
 import 'package:instagram_flutter/core/utils/dark_mode.dart' as darkMode;
 import 'package:instagram_flutter/features/post/containers/post_feed.dart';
