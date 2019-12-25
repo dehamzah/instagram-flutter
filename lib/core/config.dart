@@ -8,6 +8,7 @@ class Config {
 
   Env env;
   String apiBaseUrl;
+  bool enableNetworkLogging;
 
   Config() {
     value = this;

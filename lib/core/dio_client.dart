@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:instagram_flutter/core/config.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioClient {
@@ -11,17 +12,22 @@ class DioClient {
   }
 
   DioClient._internal() {
-    dio = Dio();
-    dio.interceptors.add(
-      PrettyDioLogger(
-        requestHeader: true,
-        requestBody: true,
-        responseBody: true,
-        responseHeader: false,
-        error: true,
-        compact: true,
-        maxWidth: 120,
-      ),
+    BaseOptions options = BaseOptions(
+      baseUrl: Config.value.apiBaseUrl,
     );
+    dio = Dio(options);
+    if (Config.value.enableNetworkLogging) {
+      dio.interceptors.add(
+        PrettyDioLogger(
+          requestHeader: true,
+          requestBody: true,
+          responseBody: true,
+          responseHeader: false,
+          error: true,
+          compact: true,
+          maxWidth: 120,
+        ),
+      );
+    }
   }
 }
