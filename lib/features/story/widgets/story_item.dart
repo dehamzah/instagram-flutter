@@ -1,9 +1,10 @@
-import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_flutter/core/theme/theme_colors.dart';
 import 'package:instagram_flutter/core/theme/dimens.dart';
+import 'package:instagram_flutter/core/utils/position.dart';
+import 'package:instagram_flutter/core/widgets/scale_route_transition.dart';
+import 'package:instagram_flutter/features/story/containers/stories_screen.dart';
 import 'package:instagram_flutter/features/story/models/story.dart';
 import 'package:instagram_flutter/core/utils/dark_mode.dart' as darkMode;
 
@@ -25,6 +26,9 @@ class _StoryItemState extends State<StoryItem> {
   Widget build(BuildContext context) {
     bool isDark = darkMode.isDark(context);
 
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Column(
       children: <Widget>[
         GestureDetector(
@@ -35,6 +39,21 @@ class _StoryItemState extends State<StoryItem> {
             });
           },
           onTapDown: (TapDownDetails tapDownDetails) {
+            List<double> alignmentPosition = getAlignmentPosition(
+              tapDownDetails.globalPosition.dx,
+              tapDownDetails.globalPosition.dy,
+              screenWidth,
+              screenHeight,
+            );
+
+            Navigator.of(context, rootNavigator: true).push(
+              ScaleRouteTransition(
+                screen: StoriesScreen(story: widget.story),
+                posX: alignmentPosition[0],
+                posY: alignmentPosition[1],
+              ),
+            );
+
             setState(() {
               boxSize = _boxSize - 8;
             });

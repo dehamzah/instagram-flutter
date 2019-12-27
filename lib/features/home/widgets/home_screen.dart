@@ -44,8 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     min(pulledExtent / refreshTriggerPullDistance, 1.0)),
                 child: Icon(
                   CupertinoIcons.down_arrow,
-                  color: CupertinoDynamicColor.resolve(
-                      CupertinoColors.inactiveGray, context),
+                  color: CupertinoColors.inactiveGray,
                   size: 36.0,
                 ),
               )
