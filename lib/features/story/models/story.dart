@@ -7,16 +7,26 @@ part 'story.g.dart';
 @JsonSerializable(explicitToJson: true)
 class Story {
   final int id;
-  final bool isRead;
   final User user;
   final List<Media> medias;
+  bool isRead;
+  int currentViewedStoryIndex;
 
   Story({
     this.id,
-    this.isRead,
     this.user,
     this.medias,
+    this.isRead = false,
+    this.currentViewedStoryIndex = 0,
   });
+
+  setRead(bool val) {
+    this.isRead = val;
+  }
+
+  setCurrentViewedStoryIndex(int index) {
+    this.currentViewedStoryIndex = index;
+  }
 
   factory Story.fromJson(Map<String, dynamic> json) => _$StoryFromJson(json);
 

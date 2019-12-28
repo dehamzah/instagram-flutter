@@ -5,8 +5,9 @@ import 'package:instagram_flutter/features/story/services/story_service.dart';
 class StoryStore with ChangeNotifier {
   bool isLoading = false;
   List<Story> stories;
-  int currentViewedStoryIndex = 0;
-  List<int> viewedStoryIndexes = List<int>();
+  Story currentViewedStory;
+
+  PageController storiesScreenPageController;
 
   Future<void> getLatestStories() async {
     this.isLoading = true;
@@ -15,21 +16,53 @@ class StoryStore with ChangeNotifier {
     notifyListeners();
   }
 
-  void setCurrentViewedStoryIndex(int index) {
-    this.currentViewedStoryIndex = index;
+  void setStoryReaded(Story story) {
+    List<Story> newStories = List.from(this.stories);
+    int storyIndex = newStories.indexOf(story);
+    newStories.removeAt(storyIndex);
+
+    Story updatedStory = Story(
+      id: story.id,
+      user: story.user,
+      medias: story.medias,
+      isRead: true,
+      currentViewedStoryIndex: story.currentViewedStoryIndex,
+    );
+    newStories.insert(storyIndex, updatedStory);
+    this.stories = newStories;
     notifyListeners();
   }
 
-  void addViewedStoryIndex(int index) {
-    List<int> updatedViewedStoryIndexes = List.from(this.viewedStoryIndexes)
-      ..add(index);
-    this.viewedStoryIndexes = updatedViewedStoryIndexes;
+  void setCurrentViewedStory(Story story) {
+    this.currentViewedStory = story;
     notifyListeners();
   }
 
-  void resetViewedStoryIndexes() {
-    print('resetViewedStoryIndexes');
-    this.viewedStoryIndexes = List<int>();
+  void clearCurrentViewedStory() {
+    this.currentViewedStory = null;
     notifyListeners();
+  }
+
+  void setCurrentViewedStoryIndex(int index, Story story) {
+    List<Story> newStories = List.from(this.stories);
+    int storyIndex = newStories.indexOf(story);
+    newStories.removeAt(storyIndex);
+
+    Story updatedStory = Story(
+      id: story.id,
+      user: story.user,
+      medias: story.medias,
+      isRead: story.isRead,
+      currentViewedStoryIndex: index,
+    );
+    newStories.insert(storyIndex, updatedStory);
+    this.stories = newStories;
+
+    this.setCurrentViewedStory(updatedStory);
+    notifyListeners();
+  }
+
+  void setStoriesScreenPageController(PageController pageController) {
+    this.storiesScreenPageController = pageController;
   }
 }

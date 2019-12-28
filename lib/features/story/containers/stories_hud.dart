@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_flutter/core/theme/dimens.dart';
 import 'package:instagram_flutter/core/theme/theme_colors.dart';
+import 'package:instagram_flutter/core/theme/theme_text_styles.dart';
 import 'package:instagram_flutter/features/story/models/story.dart';
 import 'package:instagram_flutter/features/story/stores/story_store.dart';
 import 'package:instagram_flutter/features/story/widgets/input_text.dart';
@@ -20,9 +22,8 @@ class StoriesHud extends StatelessWidget {
         height: double.infinity,
         child: Stack(
           children: <Widget>[
-            _StoriesInfo(
-              story: story,
-            ),
+            _StoriesControl(),
+            _StoriesInfo(story: story),
             AnimatedPositioned(
               duration: Duration(milliseconds: 150),
               curve: Curves.easeInOut,
@@ -33,6 +34,65 @@ class StoriesHud extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _StoriesControl extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    Story currentViewedStory =
+        Provider.of<StoryStore>(context).currentViewedStory;
+    int currentViewedStoryIndex = Provider.of<StoryStore>(context)
+        .currentViewedStory
+        .currentViewedStoryIndex;
+
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: GestureDetector(
+              onTap: () {
+                int prevIndex = currentViewedStoryIndex - 1;
+                if (prevIndex < 0) {
+                  Provider.of<StoryStore>(context, listen: false)
+                      .storiesScreenPageController
+                      ?.previousPage(
+                          curve: Curves.easeInOut,
+                          duration: Duration(milliseconds: 300));
+                } else {
+                  Provider.of<StoryStore>(context, listen: false)
+                      .setCurrentViewedStoryIndex(
+                          prevIndex, currentViewedStory);
+                }
+              },
+            ),
+          ),
+          Expanded(
+            child: GestureDetector(
+              onTap: () {
+                int nextIndex = currentViewedStoryIndex + 1;
+                if (nextIndex >= currentViewedStory.medias.length) {
+                  Provider.of<StoryStore>(context, listen: false)
+                      .storiesScreenPageController
+                      ?.nextPage(
+                        curve: Curves.easeInOut,
+                        duration: Duration(milliseconds: 300),
+                      );
+                } else {
+                  Provider.of<StoryStore>(context, listen: false)
+                      .setCurrentViewedStoryIndex(
+                    nextIndex,
+                    currentViewedStory,
+                  );
+                }
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -49,9 +109,8 @@ class _StoriesInfo extends StatelessWidget {
       width: double.infinity,
       child: Column(
         children: <Widget>[
-          _ProgressBars(
-            story: story,
-          ),
+          _ProgressBars(),
+          _StoryMeta(story: story),
         ],
       ),
     );
@@ -59,10 +118,6 @@ class _StoriesInfo extends StatelessWidget {
 }
 
 class _ProgressBars extends StatefulWidget {
-  final Story story;
-
-  const _ProgressBars({Key key, @required this.story}) : super(key: key);
-
   @override
   __ProgressBarsState createState() => __ProgressBarsState();
 }
@@ -70,42 +125,40 @@ class _ProgressBars extends StatefulWidget {
 class __ProgressBarsState extends State<_ProgressBars> {
   @override
   Widget build(BuildContext context) {
-    int currentViewedStoryIndex =
-        Provider.of<StoryStore>(context).currentViewedStoryIndex;
-    List<int> viewedStoryIndexes =
-        Provider.of<StoryStore>(context).viewedStoryIndexes;
-
-    print('currentViewedStoryIndex $currentViewedStoryIndex');
-    print('viewedStoryIndexes $viewedStoryIndexes');
+    Story currentViewedStory =
+        Provider.of<StoryStore>(context).currentViewedStory;
 
     return Container(
       margin: EdgeInsets.all(Dimens.space8),
       child: Row(
-        children: List.generate(widget.story.medias.length, (int index) {
+        children: List.generate(currentViewedStory.medias.length, (int index) {
           return Expanded(
             child: Container(
               width: double.infinity,
               child: _ProgressBar(
                 key: UniqueKey(),
-                start: currentViewedStoryIndex == index,
-                finish: viewedStoryIndexes.contains(index),
-                totalProgressBar: widget.story.medias.length,
+                start: currentViewedStory.currentViewedStoryIndex == index,
+                isRead: index < currentViewedStory.currentViewedStoryIndex,
+                totalProgressBar: currentViewedStory.medias.length,
                 onEnd: () {
-                  if (index != widget.story.medias.length - 1) {
+                  if (index == currentViewedStory.medias.length - 1) {
                     Provider.of<StoryStore>(context, listen: false)
-                        .setCurrentViewedStoryIndex(index + 1);
+                        .storiesScreenPageController
+                        ?.nextPage(
+                          curve: Curves.easeInOut,
+                          duration: Duration(milliseconds: 300),
+                        );
                   } else {
-                    Navigator.of(context).pop();
-                    return;
+                    Provider.of<StoryStore>(context, listen: false)
+                        .setCurrentViewedStoryIndex(
+                            index + 1, currentViewedStory);
                   }
-
-                  Provider.of<StoryStore>(context, listen: false)
-                      .addViewedStoryIndex(index);
                 },
               ),
               margin: EdgeInsets.only(
-                right:
-                    index == widget.story.medias.length - 1 ? 0 : Dimens.space4,
+                right: index == currentViewedStory.medias.length - 1
+                    ? 0
+                    : Dimens.space4,
               ),
             ),
           );
@@ -118,14 +171,14 @@ class __ProgressBarsState extends State<_ProgressBars> {
 class _ProgressBar extends StatefulWidget {
   final int totalProgressBar;
   final bool start;
-  final bool finish;
+  final bool isRead;
   final Function onEnd;
 
   const _ProgressBar({
     Key key,
     @required this.totalProgressBar,
     this.start = false,
-    this.finish = false,
+    this.isRead = false,
     this.onEnd,
   }) : super(key: key);
 
@@ -169,7 +222,7 @@ class __ProgressBarState extends State<_ProgressBar> {
         AnimatedContainer(
           duration: Duration(seconds: 8), // TODO: get this from params
           onEnd: widget.onEnd,
-          width: widget.finish ? fullProgress : progress,
+          width: widget.isRead ? fullProgress : progress,
           height: 2,
           decoration: BoxDecoration(
             color: ThemeColors.white,
@@ -177,6 +230,80 @@ class __ProgressBarState extends State<_ProgressBar> {
           ),
         ),
       ],
+    );
+  }
+}
+
+class _StoryMeta extends StatelessWidget {
+  final Story story;
+
+  const _StoryMeta({Key key, @required this.story}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    if (story == null) return Container();
+
+    return Container(
+      padding: EdgeInsets.symmetric(
+        vertical: Dimens.space8,
+        horizontal: Dimens.space16,
+      ),
+      child: Row(
+        children: <Widget>[
+          CachedNetworkImage(
+            imageUrl: story.user.avatarUrl,
+            imageBuilder: (context, imageProvider) => Container(
+              height: 30,
+              width: 30,
+              margin: EdgeInsets.only(right: Dimens.space8),
+              child: CircleAvatar(
+                backgroundImage: imageProvider,
+              ),
+            ),
+            placeholder: (context, url) => Container(
+              height: 30,
+              width: 30,
+              alignment: Alignment.center,
+              margin: EdgeInsets.only(right: Dimens.space8),
+              child: CupertinoActivityIndicator(),
+            ),
+            errorWidget: (context, url, error) => Icon(Icons.error),
+          ),
+          Text(
+            story.user.username,
+            style: ThemeTextStyles.h5().merge(
+              TextStyle(
+                color: ThemeColors.white,
+                shadows: <Shadow>[
+                  Shadow(
+                    offset: Offset(1.0, 1.0),
+                    blurRadius: 3.0,
+                    color: ThemeColors.black1.withOpacity(0.5),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            width: Dimens.space6,
+          ),
+          Text(
+            "12 jam", // TODO: get this from api createdAt
+            style: ThemeTextStyles.h5().merge(
+              TextStyle(
+                color: ThemeColors.white.withOpacity(0.75),
+                shadows: <Shadow>[
+                  Shadow(
+                    offset: Offset(1.0, 1.0),
+                    blurRadius: 3.0,
+                    color: ThemeColors.black1.withOpacity(0.5),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
