@@ -35,7 +35,10 @@ class _StoriesSectionState extends State<StoriesSection> {
         itemCount: _storyStore.stories.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (BuildContext context, int index) {
-          return StoryItem(story: _storyStore.stories[index]);
+          return StoryItem(
+            story: _storyStore.stories[index],
+            index: index,
+          );
         },
         separatorBuilder: (BuildContext context, int index) {
           return SizedBox(

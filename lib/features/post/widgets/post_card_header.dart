@@ -4,6 +4,7 @@ import 'package:instagram_flutter/core/theme/dimens.dart';
 import 'package:instagram_flutter/core/theme/theme_colors.dart';
 import 'package:instagram_flutter/core/theme/theme_text_styles.dart';
 import 'package:instagram_flutter/core/utils/dark_mode.dart' as darkMode;
+import 'package:cached_network_image/cached_network_image.dart';
 
 class PostCardHeader extends StatelessWidget {
   final String avatarUrl;
@@ -24,13 +25,24 @@ class PostCardHeader extends StatelessWidget {
       ),
       child: Row(
         children: <Widget>[
-          Container(
-            height: 30,
-            width: 30,
-            margin: EdgeInsets.only(right: Dimens.space8),
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(avatarUrl),
+          CachedNetworkImage(
+            imageUrl: avatarUrl,
+            imageBuilder: (context, imageProvider) => Container(
+              height: 30,
+              width: 30,
+              margin: EdgeInsets.only(right: Dimens.space8),
+              child: CircleAvatar(
+                backgroundImage: imageProvider,
+              ),
             ),
+            placeholder: (context, url) => Container(
+              height: 30,
+              width: 30,
+              alignment: Alignment.center,
+              margin: EdgeInsets.only(right: Dimens.space8),
+              child: CupertinoActivityIndicator(),
+            ),
+            errorWidget: (context, url, error) => Icon(Icons.error),
           ),
           Expanded(
             child: Column(

@@ -20,12 +20,11 @@ dependencies:
   flutter:
     sdk: flutter
   json_annotation:
-  http: 0.12.0+2
   dio: 3.0.0
   pretty_dio_logger: 1.0.8
-  cached_network_image: 2.0.0-rc
-  provider: 4.0.0
+  provider:
   flutter_svg: 0.15.0
+  cached_network_image: 2.0.0-rc
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
