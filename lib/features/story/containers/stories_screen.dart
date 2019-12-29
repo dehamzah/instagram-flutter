@@ -17,15 +17,23 @@ class StoriesScreen extends StatefulWidget {
 }
 
 class _StoriesScreenState extends State<StoriesScreen> {
+  double currentPageValue = 0.0;
+
   @override
   void initState() {
     super.initState();
-    Provider.of<StoryStore>(context, listen: false)
-        .setStoriesScreenPageController(
-      PageController(
-        initialPage: widget.initialPageIndex,
-      ),
+    PageController _pageController = PageController(
+      initialPage: widget.initialPageIndex,
     );
+
+    _pageController.addListener(() {
+      setState(() {
+        currentPageValue = _pageController.page;
+      });
+    });
+
+    Provider.of<StoryStore>(context, listen: false)
+        .setStoriesScreenPageController(_pageController);
   }
 
   @override
@@ -34,6 +42,44 @@ class _StoriesScreenState extends State<StoriesScreen> {
         .storiesScreenPageController
         .dispose();
     super.dispose();
+  }
+
+  Widget _buildScreen({String imageUrl, Story story}) {
+    return Stack(
+      children: <Widget>[
+        CachedNetworkImage(
+          imageUrl: imageUrl,
+          imageBuilder: (context, imageProvider) => Container(
+            width: double.infinity,
+            height: double.infinity,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: imageProvider,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          placeholder: (context, url) => Container(
+            width: double.infinity,
+            height: double.infinity,
+            child: Center(
+              child: CupertinoActivityIndicator(),
+            ),
+          ),
+          errorWidget: (context, url, error) => Container(
+            width: double.infinity,
+            height: double.infinity,
+            child: Center(
+              child: Icon(
+                Icons.error_outline,
+                color: ThemeColors.white,
+              ),
+            ),
+          ),
+        ),
+        StoriesHud(story: story),
+      ],
+    );
   }
 
   @override
@@ -51,45 +97,47 @@ class _StoriesScreenState extends State<StoriesScreen> {
       },
       itemCount: stories?.length,
       itemBuilder: (BuildContext context, int index) {
+        var screenSize = MediaQuery.of(context).size;
+
         String imageUrl = stories[index]
             .medias[stories[index].currentViewedStoryIndex]
             .mediaUrl;
 
-        return Stack(
-          children: <Widget>[
-            CachedNetworkImage(
+        double transitionValue = index - currentPageValue;
+
+        // page being swiped from
+        if (index == currentPageValue.floor()) {
+          print(
+              "from. cpv: $currentPageValue, index: $index, val: $transitionValue");
+          return Transform(
+            origin: Offset(screenSize.width / 2, screenSize.height),
+            transform: Matrix4.identity()..rotateZ(transitionValue),
+            child: _buildScreen(
               imageUrl: imageUrl,
-              imageBuilder: (context, imageProvider) => Container(
-                width: double.infinity,
-                height: double.infinity,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: imageProvider,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              placeholder: (context, url) => Container(
-                width: double.infinity,
-                height: double.infinity,
-                child: Center(
-                  child: CupertinoActivityIndicator(),
-                ),
-              ),
-              errorWidget: (context, url, error) => Container(
-                width: double.infinity,
-                height: double.infinity,
-                child: Center(
-                  child: Icon(
-                    Icons.error_outline,
-                    color: ThemeColors.white,
-                  ),
-                ),
-              ),
+              story: stories[index],
             ),
-            StoriesHud(story: stories[index]),
-          ],
-        );
+          );
+        }
+        // page being swiped to
+        else if (index == currentPageValue.floor() + 1) {
+          print(
+              "to. cpv: $currentPageValue, index: $index, val: $transitionValue");
+          return Transform(
+            origin: Offset(screenSize.width / 2, screenSize.height),
+            transform: Matrix4.identity()..rotateZ(transitionValue),
+            child: _buildScreen(
+              imageUrl: imageUrl,
+              story: stories[index],
+            ),
+          );
+        }
+        // page off screen
+        else {
+          return _buildScreen(
+            imageUrl: imageUrl,
+            story: stories[index],
+          );
+        }
       },
     );
   }
