@@ -10,7 +10,7 @@ class ScaleRouteTransition extends PageRouteBuilder {
     this.posX,
     this.posY,
   }) : super(
-          transitionDuration: Duration(milliseconds: 300),
+          transitionDuration: Duration(milliseconds: 330),
           pageBuilder: (
             BuildContext context,
             Animation<double> animation,
