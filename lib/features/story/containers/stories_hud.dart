@@ -22,7 +22,7 @@ class StoriesHud extends StatelessWidget {
         height: double.infinity,
         child: Stack(
           children: <Widget>[
-            _StoriesControl(),
+            _StoriesControl(story: story),
             _StoriesInfo(story: story),
             AnimatedPositioned(
               duration: Duration(milliseconds: 150),
@@ -40,13 +40,14 @@ class StoriesHud extends StatelessWidget {
 }
 
 class _StoriesControl extends StatelessWidget {
+  final Story story;
+
+  const _StoriesControl({Key key, this.story}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    Story currentViewedStory =
-        Provider.of<StoryStore>(context).currentViewedStory;
-    int currentViewedStoryIndex = Provider.of<StoryStore>(context)
-        .currentViewedStory
-        .currentViewedStoryIndex;
+    Story currentViewedStory = story;
+    int currentViewedStoryIndex = story.currentViewedStoryIndex;
 
     return Container(
       width: double.infinity,
